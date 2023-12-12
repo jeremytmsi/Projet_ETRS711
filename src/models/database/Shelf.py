@@ -7,6 +7,12 @@ from dataclasses import dataclass
 @dataclass
 class Shelf(Base):
     __tablename__ = "shelfs"
+
+    def __init__(self,name,available_bottles,cellar_id):
+        self.name = name
+        self.available_bottles = available_bottles
+        self.cellar_id = cellar_id
+
     id = Column(Integer(), primary_key=True, autoincrement=True, index=True)
     name = Column(String())
     available_bottles = Column(Integer())
