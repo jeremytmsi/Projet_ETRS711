@@ -1,0 +1,18 @@
+services:
+  web:
+    build:
+      context: docker
+    ports:
+      - 8080:5000
+    volumes:
+      - ./:/usr/src/app
+    links:
+      - db
+  db:
+    image: postgres
+    environment:
+      POSTGRES_USER: projet
+      POSTGRES_PASSWORD: projet
+      POSTGRES_DB: projet_etrs711
+    ports:
+      - 5432:5432
