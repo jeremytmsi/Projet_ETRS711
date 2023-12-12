@@ -11,5 +11,4 @@ class Cellar(Base):
     id = Column(Integer(), primary_key=True, autoincrement=True, index=True)
     name = Column(String())
     available_shelfs = Column(Integer())
-    region = Column(String())
     user_id = mapped_column("user_id", Integer(), ForeignKey("users.id"))
