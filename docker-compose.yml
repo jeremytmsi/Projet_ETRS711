@@ -8,6 +8,7 @@ services:
       - ./:/usr/src/app
     links:
       - db
+    user: 1000:1000
   db:
     image: postgres
     environment:
