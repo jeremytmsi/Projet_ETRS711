@@ -1,0 +1,5 @@
+flask-bootstrap
+dataclasses
+psycopg2-binary
+alembic
+Flask
