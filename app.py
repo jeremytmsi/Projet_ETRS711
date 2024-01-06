@@ -16,6 +16,7 @@ app = create_app()
 # Routes
 import src.controllers.HomeController
 import src.controllers.LoginController
+import src.controllers.RegisterController
 
 if __name__ == "__main__":
     app.run()

@@ -4,7 +4,7 @@
 {% endblock %}
 
 {% block body %}
-    <h3>Connexion</h3>
+    <h3>Inscription</h3>
 
     <form>
         {% for field in form %}
@@ -23,7 +23,7 @@
         {% endfor %}
     </form>
 
-   Déjà un compte ? <a href="{{ url_for("show_register_page") }}" class="text-decoration-none">Inscrivez-vous</a>
+    Pas de compte ? <a href="{{ url_for("show_login_page") }}" class="text-decoration-none">Connectez-vous</a>
 
 
 {% endblock %}
