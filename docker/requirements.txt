@@ -6,3 +6,4 @@ Flask
 Flask-WTF
 SQLAlchemy
 flask-sqlalchemy
+flask-login

@@ -6,7 +6,13 @@
 {% block body %}
     <h3>Connexion</h3>
 
-    <form>
+    {% if error %}
+        <div class="alert alert-danger" role="alert">
+            Impossible de vous connecter avec ces identifiants.
+        </div>
+    {% endif %}
+
+    <form action="/login" method="post">
         {% for field in form %}
             {% if field.widget.input_type != 'hidden' %}
                 {% if field.id != "submit" %}
@@ -19,6 +25,8 @@
                         {{ field(class="btn btn-primary form-control") }}
                     </div>
                 {% endif %}
+            {% else %}
+                {{ field }}
             {% endif %}
         {% endfor %}
     </form>
