@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}
+    Caves à vins - Connexion
+{% endblock %}
+
+{% block body %}
+    <h3>Connexion</h3>
+
+    <form>
+        {% for field in form %}
+            {% if field.widget.input_type != 'hidden' %}
+                {% if field.id != "submit" %}
+                    <div class="form-group mb-4">
+                        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                        {{ field(class="form-control") }}
+                    </div>
+                {% else %}
+                    <div class="form-group mb-4">
+                        {{ field(class="btn btn-primary form-control") }}
+                    </div>
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+    </form>
+
+    Pas de compte ? <a href="" class="text-decoration-none">Inscrivez-vous</a>
+
+
+{% endblock %}

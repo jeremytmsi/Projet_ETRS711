@@ -3,3 +3,4 @@ dataclasses
 psycopg2-binary
 alembic
 Flask
+Flask-WTF

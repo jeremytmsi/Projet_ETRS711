@@ -6,5 +6,5 @@
 
 {% block body %}
     <h4>Cette application permet de gérer vos caves à vins, vos étagères ainsi que vos bouteilles. Pour effectuer cela, vous devez être
-        <a href="" class="text-decoration-none">connecté</a>.</h4>
+        <a href="{{ url_for("show_login_page") }}" class="text-decoration-none">connecté</a>.</h4>
 {% endblock %}
