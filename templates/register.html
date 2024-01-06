@@ -1,12 +1,28 @@
 {% extends 'base.html' %}
 {% block title %}
-    Caves à vins - Connexion
+    Caves à vins - Inscription
 {% endblock %}
 
 {% block body %}
     <h3>Inscription</h3>
 
-    <form>
+    {% if success %}
+
+        <div class="alert alert-success" role="alert">
+            Vous êtes bien inscrit !
+        </div>
+
+    {% endif %}
+
+    {% if error %}
+
+        <div class="alert alert-danger" role="alert">
+            Une erreur est survenue
+        </div>
+
+    {% endif %}
+
+    <form action="/register" method="post">
         {% for field in form %}
             {% if field.widget.input_type != 'hidden' %}
                 {% if field.id != "submit" %}
@@ -19,6 +35,8 @@
                         {{ field(class="btn btn-primary form-control") }}
                     </div>
                 {% endif %}
+            {% else %}
+                {{ field }}
             {% endif %}
         {% endfor %}
     </form>
