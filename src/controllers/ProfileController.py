@@ -12,7 +12,8 @@ from src.models.forms.CellarForm import CellarForm
 @login_required
 def show_profile_page():
     form = CellarForm()
-    return render_template("profile.html",form=form)
+    cellars = get_user_cellars()
+    return render_template("profile.html",form=form, cellars=cellars)
 
 @app.route("/profile/new_cellar", methods=["POST"])
 def create_new_cellar():
@@ -28,3 +29,6 @@ def create_new_cellar():
             flash("Cette cave existe déjà")
         finally:
             return redirect(url_for("show_profile_page"))
+
+def get_user_cellars():
+    return db.session.execute(db.select(Cellar).filter_by(user_id=current_user.id)).scalars().all()
