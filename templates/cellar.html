@@ -1,20 +1,15 @@
 {% extends 'base.html' %}
-
-{% block title %}
-    Cave à vins - Accueil
-{% endblock %}
-
 {% block body %}
 
-<!-- Modal -->
-<div class="modal fade" id="createNewCellar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- Modal -->
+<div class="modal fade" id="createNewShelf" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Créer une nouvelle cave</h1>
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Créer une nouvelle étagère</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-        <form action="{{ url_for("create_new_cellar") }}" method="post">
+        <form action="{{ url_for("create_shelf", id=cellar.id) }}" method="post">
             <div class="modal-body">
                 {% for field in form %}
                     {% if field.widget.input_type != "hidden" %}
@@ -29,33 +24,34 @@
             </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-        <button type="submit" class="btn btn-primary">Créer la cave</button>
+        <button type="submit" class="btn btn-primary">Créer l'étagère</button>
       </div>
         </form>
     </div>
   </div>
 </div>
 
-    <h4>Profil de {{ current_user.username }}</h4>
+    <h3>Cave : {{ cellar.name }}</h3>
 
-    <a href="{{ url_for('logout') }}" class="btn btn-danger">Déconnexion</a>
+    <button type="submit" class="btn btn-danger" href="/">Supprimer cette cave</button>
 
-    <h5 class="mt-5">Vos caves à vins</h5>
+    <h4 class="mt-4">Liste des étagères</h4>
 
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createNewCellar">
-        Créer une nouvelle cave
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createNewShelf">
+        Créer une nouvelle étagère
     </button>
 
     <div class="row">
-        {% for cellar in cellars %}
+        {% for shelf in shelfs %}
             <div class="col-4">
                 <div class="card mt-4">
                     <div class="card-body">
-                        <h5 class="card-title">{{ cellar.name }}</h5>
-                        <a href="{{ url_for("get_detailed_cellar", id=cellar.id) }}" class="btn btn-primary">Voir la cave</a>
+                        <h5 class="card-title">{{ shelf.name }}</h5>
+                        <a href="" class="btn btn-primary">Voir l'étagère</a>
                     </div>
                 </div>
             </div>
         {% endfor %}
     </div>
+
 {% endblock %}
