@@ -5,13 +5,46 @@
 {% endblock %}
 
 {% block body %}
+
+<!-- Modal -->
+<div class="modal fade" id="createNewCellar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Créer une nouvelle cave</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+        <form action="{{ url_for("create_new_cellar") }}" method="post">
+            <div class="modal-body">
+                {% for field in form %}
+                    {% if field.widget.input_type != "hidden" %}
+                        <div class="mb-3 form-group">
+                            <label for="{{ field.id }}">{{ field.label }}</label>
+                            {{ field(class="form-control") }}
+                        </div>
+                    {% else %}
+                        {{ field }}
+                    {% endif %}
+                {% endfor %}
+            </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+        <button type="submit" class="btn btn-primary">Créer la cave</button>
+      </div>
+        </form>
+    </div>
+  </div>
+</div>
+
     <h4>Profil de {{ current_user.username }}</h4>
 
     <a href="{{ url_for('logout') }}" class="btn btn-danger">Déconnexion</a>
 
     <h5 class="mt-5">Vos caves à vins</h5>
 
-    <a href="{{ url_for('create_new_cellar') }}" class="btn btn-primary">Créer une nouvelle cave</a>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createNewCellar">
+        Créer une nouvelle cave
+    </button>
 
     {% for cellar in cellars %}
         <div class="card">

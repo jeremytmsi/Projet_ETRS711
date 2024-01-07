@@ -8,12 +8,10 @@ from dataclasses import dataclass
 class Cellar(Base):
     __tablename__ = "cellars"
 
-    def __init__(self,name,available_shelfs,user_id):
+    def __init__(self,name,user_id):
         self.name = name
-        self.available_shelfs = available_shelfs
         self.user_id = user_id
 
     id = Column(Integer(), primary_key=True, autoincrement=True, index=True)
     name = Column(String())
-    available_shelfs = Column(Integer())
     user_id = mapped_column("user_id", Integer(), ForeignKey("users.id"))
