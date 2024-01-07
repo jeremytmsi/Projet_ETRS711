@@ -16,8 +16,12 @@ def get_cellar_by_id(id):
 @app.route("/profile/cellar/<id>")
 def get_detailed_cellar(id):
     cellar = get_cellar_by_id(id)
+    shelfs = get_shelfs(id)
     form = ShelfForm()
-    return render_template("cellar.html", cellar=cellar, form=form)
+    return render_template("cellar.html", cellar=cellar,shelfs=shelfs, form=form)
+
+def get_shelfs(cellar_id):
+    return db.session.execute(db.select(Shelf).filter_by(cellar_id=cellar_id)).scalars().all()
 
 @app.route("/profile/cellar/<id>/new_shelf", methods=["POST"])
 def create_shelf(id):

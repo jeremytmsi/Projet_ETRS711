@@ -47,7 +47,7 @@
                 <div class="card mt-4">
                     <div class="card-body">
                         <h5 class="card-title">{{ shelf.name }}</h5>
-                        <a href="" class="btn btn-primary">Voir l'étagère</a>
+                        <a href="{{ url_for("get_detailed_shelf",id=shelf.id) }}" class="btn btn-primary">Voir l'étagère</a>
                     </div>
                 </div>
             </div>
