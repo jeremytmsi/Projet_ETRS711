@@ -15,8 +15,9 @@ def get_shelf_by_id(id):
 @app.route("/profile/shelf/<id>")
 def get_detailed_shelf(id):
     shelf = get_shelf_by_id(id)
+    bottles = get_bottles(id)
     form = BottleForm()
-    return render_template("shelf.html", shelf=shelf, form=form)
+    return render_template("shelf.html", shelf=shelf, bottles=bottles, form=form)
 
 @app.route("/profile/shelf/<id>/new_bottle", methods=["POST"])
 def add_bottle(id):
@@ -32,3 +33,6 @@ def add_bottle(id):
             flash("Cette bouteille existe déjà")
         finally:
             return redirect(url_for("get_detailed_shelf", id=id))
+
+def get_bottles(shelf_id):
+    return db.session.execute(db.select(Bottle).filter_by(shelf_id=shelf_id)).scalars().all()

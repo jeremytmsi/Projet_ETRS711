@@ -41,4 +41,17 @@
         Ajouter une nouvelle bouteille
     </button>
 
+    <div class="row">
+        {% for bottle in bottles %}
+            <div class="col-4">
+                <div class="card mt-4">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ bottle.name }}</h5>
+                        <a href="{{ url_for("show_detailed_bottle", id=bottle.id) }}" class="btn btn-primary">Voir la bouteille</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
 {% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+    <h3>Bouteille : {{ bottle.name }}</h3>
+
+    <button type="button" class="btn btn-danger">Supprimer cette bouteille</button>
+
+    <h4 class="mt-4 mb-4">Informations à propos de la bouteille</h4>
+    <p>Région : {{ bottle.region }}</p>
+
+    <p>Domaine : {{ bottle.domain }}</p>
+
+    <p>Type de vin : {{ bottle.wine_type }}</p>
+
+    <p>Année : {{ bottle.year }}</p>
+
+    <p>Prix : {{ bottle.price }}</p>
+
+    <p>Quantité : {{ bottle.quantity }}</p>
+
+{% endblock %}

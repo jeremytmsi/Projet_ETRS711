@@ -33,3 +33,4 @@ import src.controllers.RegisterController
 import src.controllers.ProfileController
 import src.controllers.CellarController
 import src.controllers.ShelfController
+import src.controllers.BottleController
