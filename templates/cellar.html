@@ -34,7 +34,7 @@
     <h3>Cave : {{ cellar.name }}</h3>
 
     <form action="{{ url_for("delete_cellar",id=cellar.id) }}" method="post">
-        {{ form.csrf_token }}
+        {{ deleteForm.csrf_token }}
         <button type="submit" class="btn btn-danger">Supprimer la cave</button>
     </form>
 

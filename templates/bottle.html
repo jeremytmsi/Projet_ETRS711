@@ -5,7 +5,7 @@
     <h3>Bouteille : {{ bottle.name }}</h3>
 
     <form action="{{ url_for("delete_bottle",id=bottle.id) }}" method="post">
-        {{ form.csrf_token }}
+        {{ deleteForm.csrf_token }}
         <button type="submit" class="btn btn-danger">Supprimer cette bouteille</button>
     </form>
 
