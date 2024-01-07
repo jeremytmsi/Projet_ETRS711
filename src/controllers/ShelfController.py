@@ -6,7 +6,7 @@ from flask import render_template, url_for, flash, redirect
 from src.models.database.Bottle import Bottle
 from src.models.database.Shelf import Shelf
 from src.models.forms.BottleForm import BottleForm
-from src.models.forms.ShelfDeleteForm import ShelfDeleteForm
+from src.models.forms.DeleteForm import DeleteForm
 
 
 def get_shelf_by_id(id):
@@ -18,7 +18,7 @@ def get_detailed_shelf(id):
     shelf = get_shelf_by_id(id)
     bottles = get_bottles(id)
     form = BottleForm()
-    deleteForm = ShelfDeleteForm()
+    deleteForm = DeleteForm()
     return render_template("shelf.html", shelf=shelf,deleteForm = deleteForm, bottles=bottles, form=form)
 
 @app.route("/profile/shelf/<id>/new_bottle", methods=["POST"])

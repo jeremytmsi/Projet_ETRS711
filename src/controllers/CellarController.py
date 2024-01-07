@@ -6,6 +6,7 @@ from flask_login import login_required, current_user
 
 from src.models.database.Cellar import Cellar
 from src.models.database.Shelf import Shelf
+from src.models.forms.DeleteForm import DeleteForm
 from src.models.forms.ShelfForm import ShelfForm
 
 
@@ -18,7 +19,8 @@ def get_detailed_cellar(id):
     cellar = get_cellar_by_id(id)
     shelfs = get_shelfs(id)
     form = ShelfForm()
-    return render_template("cellar.html", cellar=cellar,shelfs=shelfs, form=form)
+    deleteForm = DeleteForm()
+    return render_template("cellar.html", cellar=cellar,shelfs=shelfs, form=form, deleteForm = deleteForm)
 
 def get_shelfs(cellar_id):
     return db.session.execute(db.select(Shelf).filter_by(cellar_id=cellar_id)).scalars().all()
@@ -37,3 +39,10 @@ def create_shelf(id):
             flash("Cette étagère existe déjà")
         finally:
             return redirect(url_for("get_detailed_cellar", id=id))
+
+@app.route("/profile/cellar/<id>/delete", methods=["POST"])
+def delete_cellar(id):
+    cellar = get_cellar_by_id(id)
+    db.session.delete(cellar)
+    db.session.commit()
+    return redirect(url_for("show_profile_page"))

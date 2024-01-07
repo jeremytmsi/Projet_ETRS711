@@ -4,7 +4,7 @@ from flask import render_template, url_for, flash, redirect
 from flask_login import login_required, current_user
 
 from src.models.database.Bottle import Bottle
-from src.models.forms.BottleDeleteForm import BottleDeleteForm
+from src.models.forms.DeleteForm import DeleteForm
 
 
 def get_bottle_by_id(id):
@@ -13,7 +13,7 @@ def get_bottle_by_id(id):
 @app.route("/profile/bottle/<id>")
 def show_detailed_bottle(id):
     bottle = get_bottle_by_id(id)
-    deleteForm = BottleDeleteForm()
+    deleteForm = DeleteForm()
     return render_template("bottle.html",deleteForm = deleteForm, bottle=bottle)
 
 @app.route("/profile/bottle/<id>/delete", methods=["POST"])

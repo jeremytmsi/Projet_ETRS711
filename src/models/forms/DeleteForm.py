@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
 
 
-class BottleDeleteForm(FlaskForm):
+class DeleteForm(FlaskForm):
     pass
