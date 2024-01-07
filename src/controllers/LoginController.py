@@ -1,7 +1,7 @@
-from flask_login import login_user, login_manager
+from flask_login import login_user, login_manager, current_user, login_required, logout_user
 
 from app import app, db
-from flask import render_template, url_for
+from flask import render_template, url_for, redirect
 
 from src.models.database.User import User
 from src.models.forms.LoginForm import LoginForm
@@ -9,6 +9,8 @@ import hashlib
 
 @app.route("/login",methods=["GET"])
 def show_login_page():
+    if current_user.is_authenticated:
+        return redirect(url_for('show_profile_page'))
     form = LoginForm()
     return render_template('login.html',form=form)
 
@@ -24,9 +26,9 @@ def login():
             if not user:
                 raise Exception("User not found")
             else:
-                if user.password != password:
+                if user.password == password:
                     login_user(user)
-                    return render_template('login.html', success=True)
+                    return redirect(url_for('show_profile_page'))
         except Exception:
                 return render_template('login.html', error=True)
 
@@ -34,3 +36,9 @@ def login():
 @app.login_manager.user_loader
 def load_user(user_id):
     return db.session.execute(db.select(User).filter_by(id=user_id)).scalar_one()
+
+@app.route("/logout")
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('show_login_page'))

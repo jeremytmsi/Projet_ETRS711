@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Cave à vins - Accueil
+{% endblock %}
+
+{% block body %}
+    <h4>Profil de {{ current_user.username }}</h4>
+
+    <a href="{{ url_for('logout') }}" class="btn btn-danger">Déconnexion</a>
+
+    <h5 class="mt-5">Vos caves à vins</h5>
+
+    <a href="{{ url_for('create_new_cellar') }}" class="btn btn-primary">Créer une nouvelle cave</a>
+
+    {% for cellar in cellars %}
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{ cellar.name }}</h5>
+                <p class="card-text">
+                    {{ cellar.description }}
+                </p>
+                <a href="{{ url_for('cellar', id=cellar.id) }}" class="btn btn-primary">Voir la cave</a>
+            </div>
+        </div>
+
+    {% endfor %}
+{% endblock %}
