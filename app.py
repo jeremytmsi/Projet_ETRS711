@@ -32,3 +32,4 @@ import src.controllers.LoginController
 import src.controllers.RegisterController
 import src.controllers.ProfileController
 import src.controllers.CellarController
+import src.controllers.ShelfController

@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+        <!-- Modal -->
+<div class="modal fade" id="createNewBottle" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Ajouter une nouvelle bouteille</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+        <form action="{{ url_for("add_bottle",id=shelf.id) }}" method="post">
+            <div class="modal-body">
+                {% for field in form %}
+                    {% if field.widget.input_type != "hidden" %}
+                        <div class="mb-3 form-group">
+                            <label for="{{ field.id }}">{{ field.label }}</label>
+                            {{ field(class="form-control") }}
+                        </div>
+                    {% else %}
+                        {{ field }}
+                    {% endif %}
+                {% endfor %}
+            </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+        <button type="submit" class="btn btn-primary">Créer la bouteille</button>
+      </div>
+        </form>
+    </div>
+  </div>
+</div>
+
+    <h4>Etagère : {{ shelf.name }}</h4>
+
+    <button type="button" class="btn btn-danger mb-4">Supprimer cette étagère</button>
+
+    <h5>Liste des bouteilles</h5>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createNewBottle">
+        Ajouter une nouvelle bouteille
+    </button>
+
+{% endblock %}

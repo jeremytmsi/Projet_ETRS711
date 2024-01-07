@@ -9,7 +9,7 @@ from dataclasses import dataclass
 class Bottle(Base):
     __tablename__ = "bottles"
 
-    def __init__(self, name,region,domain,wine_type,year,price,shelf_id,quantity,photo_link):
+    def __init__(self, name,region,domain,wine_type,year,price,shelf_id,quantity):
         self.name = name
         self.domain = domain
         self.region = region
@@ -18,7 +18,6 @@ class Bottle(Base):
         self.price = price
         self.shelf_id = shelf_id
         self.quantity = int(quantity)
-        self.photo_link = photo_link
 
     id = Column(Integer(), primary_key=True, autoincrement=True, index=True)
     name = Column(String())
@@ -27,6 +26,5 @@ class Bottle(Base):
     wine_type = Column(String())
     year = Column(Integer())
     price = Column(Double())
-    photo_link = Column(String())
     quantity = Column(Integer())
     shelf_id = mapped_column("shelf_id",Integer(),ForeignKey("shelfs.id"))
