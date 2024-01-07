@@ -4,6 +4,9 @@ from flask_wtf import CSRFProtect
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 
+'''
+    Permet d'initialiser l'application
+'''
 def create_app():
     db = SQLAlchemy()
     csrf = CSRFProtect()
@@ -20,13 +23,11 @@ def create_app():
     return app, db
 
 app, db = create_app()
-#login_manager = LoginManager()
-#login_manager.init_app(app)
 
 if __name__ == "__main__":
     app.run()
 
-# Routes
+#  Liste des controllers qui contiennent les routes
 import src.controllers.HomeController
 import src.controllers.LoginController
 import src.controllers.RegisterController

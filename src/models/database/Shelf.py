@@ -3,7 +3,9 @@ from src.models.database.models import Base
 from sqlalchemy import Column, String, Integer, ForeignKey
 from dataclasses import dataclass
 
-
+'''
+    Représente une étagère
+'''
 @dataclass
 class Shelf(Base):
     __tablename__ = "shelfs"

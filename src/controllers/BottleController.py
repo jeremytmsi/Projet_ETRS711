@@ -6,16 +6,24 @@ from flask_login import login_required, current_user
 from src.models.database.Bottle import Bottle
 from src.models.forms.DeleteForm import DeleteForm
 
-
+'''
+    Récupère une bouteille selon son ID
+'''
 def get_bottle_by_id(id):
     return db.session.execute(db.select(Bottle).filter_by(id=id)).scalars().first()
 
+'''
+    Permet d'afficher la page d'une bouteille spécifique
+'''
 @app.route("/profile/bottle/<id>")
 def show_detailed_bottle(id):
     bottle = get_bottle_by_id(id)
     deleteForm = DeleteForm()
     return render_template("bottle.html",deleteForm = deleteForm, bottle=bottle)
 
+'''
+    Permet de supprimer une bouteille spécifique
+'''
 @app.route("/profile/bottle/<id>/delete", methods=["POST"])
 def delete_bottle(id):
     bottle = get_bottle_by_id(id)

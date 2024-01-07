@@ -7,6 +7,9 @@ from src.models.database.User import User
 from src.models.forms.LoginForm import LoginForm
 import hashlib
 
+'''
+    Permet d'afficher la page de login
+'''
 @app.route("/login",methods=["GET"])
 def show_login_page():
     if current_user.is_authenticated:
@@ -14,6 +17,9 @@ def show_login_page():
     form = LoginForm()
     return render_template('login.html',form=form)
 
+'''
+    Permet de logguer un utilisateur
+'''
 @app.route("/login",methods=["POST"])
 def login():
     form = LoginForm()
@@ -33,10 +39,16 @@ def login():
                 return render_template('login.html', error=True)
 
 
+'''
+    Permet de récupérer un utilisateur selon son ID
+'''
 @app.login_manager.user_loader
 def load_user(user_id):
     return db.session.execute(db.select(User).filter_by(id=user_id)).scalar_one()
 
+'''
+    Permet de se déconnecter
+'''
 @app.route("/logout")
 @login_required
 def logout():

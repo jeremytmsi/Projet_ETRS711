@@ -4,7 +4,9 @@ from sqlalchemy.orm import mapped_column
 from src.models.database.models import Base
 from dataclasses import dataclass
 
-
+'''
+Représente une bouteille
+'''
 @dataclass
 class Bottle(Base):
     __tablename__ = "bottles"

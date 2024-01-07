@@ -8,11 +8,17 @@ import hashlib
 from src.models.database.User import User
 from src.models.forms.RegisterForm import RegisterForm
 
+'''
+    Permet d'afficher la page d'inscription
+'''
 @app.route("/register",methods=["GET"])
 def show_register_page():
     form = RegisterForm()
     return render_template('register.html',form=form)
 
+'''
+    Permet d'enregistrer un utilisateur
+'''
 @app.route("/register",methods=["POST"])
 def register_user():
     form = RegisterForm()

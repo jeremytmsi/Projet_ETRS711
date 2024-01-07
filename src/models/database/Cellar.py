@@ -3,7 +3,9 @@ from sqlalchemy.orm import mapped_column
 from src.models.database.models import Base
 from dataclasses import dataclass
 
-
+'''
+    Représente une cave
+'''
 @dataclass
 class Cellar(Base):
     __tablename__ = "cellars"

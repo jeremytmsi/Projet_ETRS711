@@ -8,6 +8,9 @@ from src.models.database.Cellar import Cellar
 from src.models.forms.CellarForm import CellarForm
 
 
+'''
+    Affiche la page de profil de l'utilisateur
+'''
 @app.route("/profile")
 @login_required
 def show_profile_page():
@@ -15,6 +18,9 @@ def show_profile_page():
     cellars = get_user_cellars()
     return render_template("profile.html",form=form, cellars=cellars)
 
+'''
+    Permet de créer une cave
+'''
 @app.route("/profile/new_cellar", methods=["POST"])
 def create_new_cellar():
     form = CellarForm()
@@ -30,5 +36,8 @@ def create_new_cellar():
         finally:
             return redirect(url_for("show_profile_page"))
 
+'''
+    Permet de récupèrer les caves de l'utilisateur
+'''
 def get_user_cellars():
     return db.session.execute(db.select(Cellar).filter_by(user_id=current_user.id)).scalars().all()

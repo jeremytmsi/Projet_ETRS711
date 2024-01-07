@@ -8,11 +8,15 @@ from src.models.database.Shelf import Shelf
 from src.models.forms.BottleForm import BottleForm
 from src.models.forms.DeleteForm import DeleteForm
 
-
+'''
+    Récupère une étagère selon son ID
+'''
 def get_shelf_by_id(id):
     return db.session.execute(db.select(Shelf).filter_by(id=id)).scalars().first()
 
-
+'''
+    Permet d'afficher la page d'une étagère spécifique
+'''
 @app.route("/profile/shelf/<id>")
 def get_detailed_shelf(id):
     shelf = get_shelf_by_id(id)
@@ -21,6 +25,9 @@ def get_detailed_shelf(id):
     deleteForm = DeleteForm()
     return render_template("shelf.html", shelf=shelf,deleteForm = deleteForm, bottles=bottles, form=form)
 
+'''
+    Permet d'ajouter une bouteille dans une étagère
+'''
 @app.route("/profile/shelf/<id>/new_bottle", methods=["POST"])
 def add_bottle(id):
     form = BottleForm()
@@ -36,9 +43,15 @@ def add_bottle(id):
         finally:
             return redirect(url_for("get_detailed_shelf", id=id))
 
+'''
+    Permet de récupèrer la liste des bouteilles lié à une étagère
+'''
 def get_bottles(shelf_id):
     return db.session.execute(db.select(Bottle).filter_by(shelf_id=shelf_id)).scalars().all()
 
+'''
+    Permet de supprimer une étagère spécifique
+'''
 @app.route("/profile/shelf/<id>/delete", methods=["POST"])
 def delete_shelf(id):
     shelf = get_shelf_by_id(id)
