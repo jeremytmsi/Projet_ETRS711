@@ -27,4 +27,4 @@ class Bottle(Base):
     year = Column(Integer())
     price = Column(Double())
     quantity = Column(Integer())
-    shelf_id = mapped_column("shelf_id",Integer(),ForeignKey("shelfs.id"))
+    shelf_id = mapped_column("shelf_id",Integer(),ForeignKey("shelfs.id",ondelete="CASCADE"))

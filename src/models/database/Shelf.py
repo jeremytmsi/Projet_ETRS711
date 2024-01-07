@@ -17,5 +17,5 @@ class Shelf(Base):
     id = Column(Integer(), primary_key=True, autoincrement=True, index=True)
     name = Column(String())
     available_bottles = Column(Integer())
-    cellar_id = mapped_column("cellar_id", Integer(), ForeignKey("cellars.id"))
+    cellar_id = mapped_column("cellar_id", Integer(), ForeignKey("cellars.id",ondelete="CASCADE"))
     region = Column(String())
