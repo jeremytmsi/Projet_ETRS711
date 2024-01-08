@@ -38,6 +38,6 @@ docker compose exec web bash
 alembic upgrade head
 ```
 
-Diagramme UML du projet :
+## Diagramme UML du projet :
 
 ![Diagramme UML](./uml_projet.png)
